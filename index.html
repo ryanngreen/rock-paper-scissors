@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		function computerPlay() {
+			let choices = ['Rock', 'Paper', 'Scissors'];
+			let computerNumber = Math.floor(Math.random() * 3);
+			return choices[computerNumber];
+		}
+
+		function playGame(playerSelection, computerSelection) {
+			playerSelection = playerSelection.toLowerCase();
+			computerSelection = computerSelection.toLowerCase();
+
+			switch (true) {
+				case (playerSelection == computerSelection):
+					return "It's a tie!";
+					break;
+				case (playerSelection == 'rock' && computerSelection == 'scissors'):
+					return 'You win! Rock beats Scissors!';
+					break;
+				case (playerSelection == 'scissors' && computerSelection == 'rock'):
+					return 'You lose! Rock beats Scissors!';
+					break;
+				case (playerSelection == 'paper' && computerSelection == 'rock'):
+					return 'You win! Paper beats Rock!';
+					break;
+				case (playerSelection == 'rock' && computerSelection == 'paper'):
+					return 'You lose! Paper beats Rock!';
+					break;
+				case (playerSelection == 'scissors' && computerSelection == 'paper'):
+					return 'You win! Scissors beat Paper!';
+					break;
+				case (playerSelection == 'paper' && computerSelection == 'scissors'):
+					return 'You lose! Scissors beat Paper!';
+					break;
+			}
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>
