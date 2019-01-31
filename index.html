@@ -1,58 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script>
-		// User selects button with rock, paper, or scissors
-		// Selection is stored in variable
-		// Computer makes selection
-		// Compare selections to determine winner or draw
-		// Update html to reflect current round and score
-		// At 5 rounds, update to show final winner
-		
-		function computerPlay() {
-			let choices = ['Rock', 'Paper', 'Scissors'];
-			let computerNumber = Math.floor(Math.random() * 3);
-			return choices[computerNumber];
+	<style>
+		.grid {
+			display: grid;
+			grid-template-columns: auto auto;
 		}
-
-		function playGame(playerSelection, computerSelection) {
-			playerSelection = playerSelection.toLowerCase();
-			computerSelection = computerSelection.toLowerCase();
-
-			// switch (true) {
-			// 	case (playerSelection == computerSelection):
-			// 		return "It's a tie!";
-			// 		break;
-			// 	case (playerSelection == 'rock' && computerSelection == 'scissors'):
-			// 		return 'You win! Rock beats Scissors!';
-			// 		break;
-			// 	case (playerSelection == 'scissors' && computerSelection == 'rock'):
-			// 		return 'You lose! Rock beats Scissors!';
-			// 		break;
-			// 	case (playerSelection == 'paper' && computerSelection == 'rock'):
-			// 		return 'You win! Paper beats Rock!';
-			// 		break;
-			// 	case (playerSelection == 'rock' && computerSelection == 'paper'):
-			// 		return 'You lose! Paper beats Rock!';
-			// 		break;
-			// 	case (playerSelection == 'scissors' && computerSelection == 'paper'):
-			// 		return 'You win! Scissors beat Paper!';
-			// 		break;
-			// 	case (playerSelection == 'paper' && computerSelection == 'scissors'):
-			// 		return 'You lose! Scissors beat Paper!';
-			// 		break;
-			// }
-		}
-
-		function game() {
-			let playerSelection = prompt('Rock, paper, or scissors?');
-			playGame(playerSelection, computerPlay());
-		}
-	</script>
+	</style>
 </head>
-<body>
-	<button type="button" id="rock">Rock</button>
-	<button type="button" id="paper">Paper</button>
-	<button type="button" id="scissors">Scissors</button>
+<body style="text-align: center; margin: 50px auto;">
+	<!-- User selects button with rock, paper, or scissors -->
+	<button type="button" value="0">Rock</button>
+	<button type="button" value="1">Paper</button>
+	<button type="button" value="2">Scissors</button>
+
+	<h1>Round <span id="rounds">0</span></h1>
+	<h3>Draws <span id="draws">0</span></h3>
+
+	<br/>
+	<hr/>
+	<div class="grid">
+		<div class="col-6">
+			<h2>Player</h2>
+			<p id="playerScore">0</p>
+		</div>
+		<div class="col-6">
+			<h2>Computer</h2>
+			<p id="computerScore">0</p>
+		</div>
+	</div>
+
+	
+
+	<script type="text/javascript" src="scripts.js"></script>
 </body>
 </html>
