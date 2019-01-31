@@ -2,6 +2,13 @@
 <html>
 <head>
 	<script>
+		// User selects button with rock, paper, or scissors
+		// Selection is stored in variable
+		// Computer makes selection
+		// Compare selections to determine winner or draw
+		// Update html to reflect current round and score
+		// At 5 rounds, update to show final winner
+		
 		function computerPlay() {
 			let choices = ['Rock', 'Paper', 'Scissors'];
 			let computerNumber = Math.floor(Math.random() * 3);
@@ -12,33 +19,40 @@
 			playerSelection = playerSelection.toLowerCase();
 			computerSelection = computerSelection.toLowerCase();
 
-			switch (true) {
-				case (playerSelection == computerSelection):
-					return "It's a tie!";
-					break;
-				case (playerSelection == 'rock' && computerSelection == 'scissors'):
-					return 'You win! Rock beats Scissors!';
-					break;
-				case (playerSelection == 'scissors' && computerSelection == 'rock'):
-					return 'You lose! Rock beats Scissors!';
-					break;
-				case (playerSelection == 'paper' && computerSelection == 'rock'):
-					return 'You win! Paper beats Rock!';
-					break;
-				case (playerSelection == 'rock' && computerSelection == 'paper'):
-					return 'You lose! Paper beats Rock!';
-					break;
-				case (playerSelection == 'scissors' && computerSelection == 'paper'):
-					return 'You win! Scissors beat Paper!';
-					break;
-				case (playerSelection == 'paper' && computerSelection == 'scissors'):
-					return 'You lose! Scissors beat Paper!';
-					break;
-			}
+			// switch (true) {
+			// 	case (playerSelection == computerSelection):
+			// 		return "It's a tie!";
+			// 		break;
+			// 	case (playerSelection == 'rock' && computerSelection == 'scissors'):
+			// 		return 'You win! Rock beats Scissors!';
+			// 		break;
+			// 	case (playerSelection == 'scissors' && computerSelection == 'rock'):
+			// 		return 'You lose! Rock beats Scissors!';
+			// 		break;
+			// 	case (playerSelection == 'paper' && computerSelection == 'rock'):
+			// 		return 'You win! Paper beats Rock!';
+			// 		break;
+			// 	case (playerSelection == 'rock' && computerSelection == 'paper'):
+			// 		return 'You lose! Paper beats Rock!';
+			// 		break;
+			// 	case (playerSelection == 'scissors' && computerSelection == 'paper'):
+			// 		return 'You win! Scissors beat Paper!';
+			// 		break;
+			// 	case (playerSelection == 'paper' && computerSelection == 'scissors'):
+			// 		return 'You lose! Scissors beat Paper!';
+			// 		break;
+			// }
+		}
+
+		function game() {
+			let playerSelection = prompt('Rock, paper, or scissors?');
+			playGame(playerSelection, computerPlay());
 		}
 	</script>
 </head>
 <body>
-	
+	<button type="button" id="rock">Rock</button>
+	<button type="button" id="paper">Paper</button>
+	<button type="button" id="scissors">Scissors</button>
 </body>
 </html>
