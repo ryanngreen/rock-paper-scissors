@@ -2,23 +2,30 @@
 <html>
 <head>
 	<style>
-		.grid {
-			display: grid;
-			grid-template-columns: auto auto;
-		}
-	</style>
+	.grid {
+		display: grid;
+		grid-template-columns: auto auto;
+	}
+</style>
 </head>
 <body style="text-align: center; margin: 50px auto;">
 	<!-- User selects button with rock, paper, or scissors -->
-	<button type="button" value="0">Rock</button>
-	<button type="button" value="1">Paper</button>
-	<button type="button" value="2">Scissors</button>
+	<div id="buttonSelections">
+		<button type="button" value="0">Rock</button>
+		<button type="button" value="1">Paper</button>
+		<button type="button" value="2">Scissors</button>
+	</div>
+
+	<br>
+
+	<button style="display: none;" id="newGame" type="button" value="new">New Game</button>
 
 	<h1>Round <span id="rounds">0</span></h1>
 	<h3>Draws <span id="draws">0</span></h3>
 
 	<br/>
 	<hr/>
+	<p id="roundResult">Round result.</p>
 	<div class="grid">
 		<div class="col-6">
 			<h2>Player</h2>

@@ -3,14 +3,18 @@
 		let playerScore = 0;
 		let computerScore = 0;
 		let draws = 0;
-		let won = false;
+		let gameOver = false;
 
 		// Clicking button starts the game
 		// Player selection is stored in variable
 		buttons.forEach(function(button) {
 			button.addEventListener('click', event => {
-				let playerSelection = button.value;
-				game(playerSelection);
+				if (button.value == 'new') {
+					newGame();
+				} else {
+					let playerSelection = button.value;
+					playGame(playerSelection);
+				}
 			});
 		});
 
@@ -20,15 +24,21 @@
 			return computerNumber;
 		}
 
+		function playGame(playerSelection) {
+			let roundResult = determineRound(playerSelection, computerSelection());
+			updateHTML(roundResult);
+			finalWinner();
+			updateButtons();
+		}
+
 		// Compare selections to determine winner or draw
-		function playGame(playerSelection, computerSelection) {
+		function determineRound(playerSelection, computerSelection) {
 			rounds++;
 			let choices = ['Rock', 'Paper', 'Scissors']
 			
 			switch (true) {
 				case (playerSelection == computerSelection):
 					draws++;
-					updateHTML();
 					return "It's a tie!";
 					break;
 
@@ -36,7 +46,6 @@
 				(playerSelection == '1' && computerSelection == '0') ||
 				(playerSelection == '2' && computerSelection == '1'):
 					playerScore++;
-					updateHTML();
 					return `You win! ${choices[playerSelection]} beats ${choices[computerSelection]}!`;
 					break;
 
@@ -44,42 +53,59 @@
 				(playerSelection == '0' && computerSelection == '1') ||
 				(playerSelection == '1' && computerSelection == '2'):
 					computerScore++;
-					updateHTML();
 					return `You lose! ${choices[computerSelection]} beats ${choices[playerSelection]}!`;
 					break;
 			}
 		}
 
-		function game(playerSelection) {
-			console.log(playGame(playerSelection, computerSelection()));
-			finalWinner();
-			if (won) {
-				rounds = 0;
-				draws = 0;
-				playerScore = 0;
-				computerScore = 0;
-				won = false;
-			}
-		}
-
 		// Update html to reflect current round and score
-		function updateHTML() {
+		function updateHTML(roundResult) {
 			let roundCount = document.getElementById('rounds');
 			let drawCount = document.getElementById('draws');
+			let roundResultHolder = document.getElementById('roundResult');
 			let playerScoreHolder = document.getElementById('playerScore');
 			let computerScoreHolder = document.getElementById('computerScore');
 
 			roundCount.innerHTML = rounds;
 			drawCount.innerHTML = draws;
+
+			roundResultHolder.innerHTML = roundResult;
+
 			playerScoreHolder.innerHTML = playerScore;
 			computerScoreHolder.innerHTML = computerScore;
+		}
+
+		function updateButtons() {
+			let newGameButton = document.getElementById('newGame');
+			let buttonSelections = document.getElementById('buttonSelections');
+
+			if (gameOver) {
+				buttonSelections.style.display = "none";
+				newGameButton.style.display = "inline-block";
+			} else {
+				console.log('New Game');
+				buttonSelections.style.display = "block";
+				newGameButton.style.display = "none";
+			}
 		}
 
 		// At 5 rounds, update to show final winner
 		function finalWinner() {
 			if(rounds >= 5 && !(playerScore == computerScore)) {
 				let winner = playerScore > computerScore ? 'You won!' : 'The computer won!';
+
 				alert(`Game Complete! ${winner}`);
-				won = true;
+				gameOver = true;
 			}
+		}
+
+		function newGame() {
+			rounds = 0;
+			draws = 0;
+			playerScore = 0;
+			computerScore = 0;
+			gameOver = false;
+
+			updateHTML('Round Result.');
+			updateButtons();
 		}
